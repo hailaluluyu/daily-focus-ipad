@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#214d40">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="每日计划">
+  <meta name="description" content="每日计划、晚间复盘与时间投入记录">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>每日计划 · 时间投入</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#plan" aria-label="每日计划首页"><span class="brand-mark">日</span><span><strong>DAYMARK</strong><small>每日计划 · 时间投入</small></span></a>
+      <div class="header-date" id="headerDate"></div>
+    </header>
+    <div id="reminder" class="reminder hidden" role="status"><div><strong>今天的计划还等着复盘</strong><span>完成清单，给今天一个收尾。</span></div><button class="button button-light" id="reviewNow">开始复盘</button></div>
+    <main>
+      <section class="page-heading"><div><p class="eyebrow" id="pageEyebrow">PLAN YOUR DAY</p><h1 id="pageTitle">把今天过得更清晰</h1></div><div id="headingAction"></div></section>
+      <nav class="tabs" aria-label="主导航">
+        <button class="tab active" data-tab="plan"><span>☷</span>计划</button>
+        <button class="tab" data-tab="focus"><span>◷</span>投入</button>
+        <button class="tab" data-tab="stats"><span>▥</span>统计</button>
+        <button class="tab" data-tab="data"><span>⇧</span>数据</button>
+      </nav>
+      <div id="content" class="content" aria-live="polite"></div>
+    </main>
+    <footer>数据保存在此 iPad 的浏览器中。请定期在“数据”页导出备份。</footer>
+  </div>
+  <dialog id="taskDialog" class="dialog"><form method="dialog" id="taskForm"><div class="dialog-head"><div><p class="eyebrow">DAILY PLAN</p><h2 id="taskDialogTitle">安排一件事</h2></div><button class="icon-button" value="cancel" aria-label="关闭">×</button></div><label>任务名称<input id="taskTitle" maxlength="100" required placeholder="例如：阅读 30 分钟"></label><div class="form-grid"><label>开始时间<input id="taskStart" type="time"></label><label>结束时间<input id="taskEnd" type="time"></label></div><p class="hint">时间段可以留空；填写时开始和结束时间需要同时填写。</p><p id="taskConflict" class="warning hidden">这个时间段与其他任务重叠，仍可保存。</p><div class="dialog-actions"><button class="button button-quiet" value="cancel">取消</button><button class="button button-primary" id="saveTask" value="default">保存任务</button></div></form></dialog>
+  <dialog id="categoryDialog" class="dialog"><form method="dialog" id="categoryForm"><div class="dialog-head"><div><p class="eyebrow">TIME CATEGORY</p><h2 id="categoryDialogTitle">新建投入项目</h2></div><button class="icon-button" value="cancel" aria-label="关闭">×</button></div><label>项目名称<input id="categoryName" maxlength="60" required placeholder="例如：阅读、运动、工作"></label><div class="dialog-actions"><button class="button button-quiet" value="cancel">取消</button><button class="button button-primary" id="saveCategory" value="default">保存</button></div></form></dialog>
+  <input id="importFile" type="file" accept="application/json,.json" hidden>
+  <script src="app.js" defer></script>
+</body>
+</html>
